@@ -1,4 +1,5 @@
 const buttonAdd = document.getElementById("submit-data");
+const buttonDel = document.getElementById("empty-table")
 
 buttonAdd.addEventListener("click", () => {
     const username = document.getElementById("input-username").value;
@@ -15,6 +16,7 @@ buttonAdd.addEventListener("click", () => {
     tableData1.appendChild(document.createTextNode(username));
     tableData2.appendChild(document.createTextNode(email));
     tableData3.appendChild(document.createTextNode(address));
+
     if (admin == true) {
         tableData4.appendChild(document.createTextNode("X"));
     }
@@ -28,5 +30,14 @@ buttonAdd.addEventListener("click", () => {
     tableRow.appendChild(tableData4);
 
     document.getElementById("table").appendChild(tableRow);
+})
+
+buttonDel.addEventListener("click", () => {
+    const children = document.getElementById("table");    
+    const list = children.querySelectorAll("tr");
+
+    for (let i = 0; list.length - 1 > i; i++) {
+        children.deleteRow(1);
+    }
 
 })

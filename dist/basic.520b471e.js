@@ -119,6 +119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"js/basic.js":[function(require,module,exports) {
 var buttonAdd = document.getElementById("submit-data");
+var buttonDel = document.getElementById("empty-table");
 buttonAdd.addEventListener("click", function () {
   var username = document.getElementById("input-username").value;
   var email = document.getElementById("input-email").value;
@@ -142,6 +143,13 @@ buttonAdd.addEventListener("click", function () {
   tableRow.appendChild(tableData3);
   tableRow.appendChild(tableData4);
   document.getElementById("table").appendChild(tableRow);
+});
+buttonDel.addEventListener("click", function () {
+  var children = document.getElementById("table");
+  var list = children.querySelectorAll("tr");
+  for (var i = 0; list.length - 1 > i; i++) {
+    children.deleteRow(1);
+  }
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
