@@ -1,5 +1,5 @@
 const buttonAdd = document.getElementById("submit-data");
-const buttonDel = document.getElementById("empty-table")
+const buttonDel = document.getElementById("empty-table");
 
 buttonAdd.addEventListener("click", () => {
     const username = document.getElementById("input-username").value;
@@ -28,7 +28,8 @@ buttonAdd.addEventListener("click", () => {
     }
 
     if (isFound.x == true) {
-        const row = children.getElementsByTagName("tr")[isFound.i].getElementsByTagName("td");
+        const row = children.getElementsByTagName("tr")[isFound.i]
+            .getElementsByTagName("td");
         row[1].innerHTML = email;
         row[2].innerHTML = address;
         
@@ -38,7 +39,6 @@ buttonAdd.addEventListener("click", () => {
         else {
             row[3].innerHTML = "-";
         }
-        
     }
     else {
         //https://www.w3schools.com/jsref/met_table_insertrow.asp
@@ -61,9 +61,7 @@ buttonAdd.addEventListener("click", () => {
         else {
             tableData4.innerHTML = "-";
         }
-        
     }
-        
 })
 
 buttonDel.addEventListener("click", () => {
@@ -75,5 +73,4 @@ buttonDel.addEventListener("click", () => {
         //https://www.w3schools.com/jsref/met_table_deleterow.asp
         children.deleteRow(1);
     }
-
 })
