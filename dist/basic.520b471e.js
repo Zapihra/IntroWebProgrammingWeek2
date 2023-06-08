@@ -125,29 +125,57 @@ buttonAdd.addEventListener("click", function () {
   var email = document.getElementById("input-email").value;
   var address = document.getElementById("input-address").value;
   var admin = document.getElementById("input-admin").checked;
-  var tableRow = document.createElement("tr");
-  var tableData1 = document.createElement("td");
-  var tableData2 = document.createElement("td");
-  var tableData3 = document.createElement("td");
-  var tableData4 = document.createElement("td");
-  tableData1.appendChild(document.createTextNode(username));
-  tableData2.appendChild(document.createTextNode(email));
-  tableData3.appendChild(document.createTextNode(address));
-  if (admin == true) {
-    tableData4.appendChild(document.createTextNode("X"));
-  } else {
-    tableData4.appendChild(document.createTextNode("-"));
+  var children = document.getElementById("table");
+  var list = children.querySelectorAll("tr");
+  var isFound = []; //https://www.w3schools.com/jsref/met_table_deleterow.asp
+
+  for (var i = 0; i < list.length; i++) {
+    var name = list[i].querySelector("td");
+    if (name == null) {
+      continue;
+    }
+    if (name.textContent == username) {
+      isFound.x = true;
+      isFound.i = i;
+      break;
+    } else {
+      isFound.x = false;
+    }
   }
-  tableRow.appendChild(tableData1);
-  tableRow.appendChild(tableData2);
-  tableRow.appendChild(tableData3);
-  tableRow.appendChild(tableData4);
-  document.getElementById("table").appendChild(tableRow);
+  if (isFound.x == true) {
+    var row = children.getElementsByTagName("tr")[isFound.i].getElementsByTagName("td");
+    row[1].innerHTML = email;
+    row[2].innerHTML = address;
+    if (admin == true) {
+      row[3].innerHTML = "X";
+    } else {
+      row[3].innerHTML = "-";
+    }
+  } else {
+    //https://www.w3schools.com/jsref/met_table_insertrow.asp
+
+    var tableRow = table.insertRow(-1);
+    //const tableRow = document.createElement("tr");
+    var tableData1 = tableRow.insertCell(0);
+    var tableData2 = tableRow.insertCell(1);
+    var tableData3 = tableRow.insertCell(2);
+    var tableData4 = tableRow.insertCell(3);
+    console.log(tableData1);
+    tableData1.innerHTML = username;
+    tableData2.innerHTML = email;
+    tableData3.innerHTML = address;
+    if (admin == true) {
+      tableData4.innerHTML = "X";
+    } else {
+      tableData4.innerHTML = "-";
+    }
+  }
 });
 buttonDel.addEventListener("click", function () {
   var children = document.getElementById("table");
   var list = children.querySelectorAll("tr");
   for (var i = 0; list.length - 1 > i; i++) {
+    //https://www.w3schools.com/jsref/met_table_deleterow.asp
     children.deleteRow(1);
   }
 });

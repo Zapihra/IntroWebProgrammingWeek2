@@ -7,29 +7,63 @@ buttonAdd.addEventListener("click", () => {
     const address = document.getElementById("input-address").value;
     const admin = document.getElementById("input-admin").checked;
 
-    const tableRow = document.createElement("tr");
-    const tableData1 = document.createElement("td");
-    const tableData2 = document.createElement("td");
-    const tableData3 = document.createElement("td");
-    const tableData4 = document.createElement("td");
+    const children = document.getElementById("table");    
+    const list = children.querySelectorAll("tr");
+    const isFound = []; //https://www.w3schools.com/jsref/met_table_deleterow.asp
 
-    tableData1.appendChild(document.createTextNode(username));
-    tableData2.appendChild(document.createTextNode(email));
-    tableData3.appendChild(document.createTextNode(address));
+    for (let i = 0; i < list.length; i++) {
+        const name = list[i].querySelector("td");
+        
+        if(name == null) {
+            continue;
+        }
+        if(name.textContent == username) {
+            isFound.x = true;
+            isFound.i = i;
+            break;
+        }
+        else{
+            isFound.x = false;
+        }
+    }
 
-    if (admin == true) {
-        tableData4.appendChild(document.createTextNode("X"));
+    if (isFound.x == true) {
+        const row = children.getElementsByTagName("tr")[isFound.i].getElementsByTagName("td");
+        row[1].innerHTML = email;
+        row[2].innerHTML = address;
+        
+        if (admin == true) {
+            row[3].innerHTML = "X";
+        }
+        else {
+            row[3].innerHTML = "-";
+        }
+        
     }
     else {
-        tableData4.appendChild(document.createTextNode("-"));
-    }
-    
-    tableRow.appendChild(tableData1);
-    tableRow.appendChild(tableData2);
-    tableRow.appendChild(tableData3);
-    tableRow.appendChild(tableData4);
+        //https://www.w3schools.com/jsref/met_table_insertrow.asp
 
-    document.getElementById("table").appendChild(tableRow);
+        const tableRow = table.insertRow(-1);
+        //const tableRow = document.createElement("tr");
+        const tableData1 = tableRow.insertCell(0);
+        const tableData2 = tableRow.insertCell(1);
+        const tableData3 = tableRow.insertCell(2);
+        const tableData4 = tableRow.insertCell(3);
+
+        console.log(tableData1);
+        tableData1.innerHTML = username;
+        tableData2.innerHTML = email;
+        tableData3.innerHTML = address;
+
+        if (admin == true) {
+            tableData4.innerHTML = "X";
+        }
+        else {
+            tableData4.innerHTML = "-";
+        }
+        
+    }
+        
 })
 
 buttonDel.addEventListener("click", () => {
@@ -37,6 +71,8 @@ buttonDel.addEventListener("click", () => {
     const list = children.querySelectorAll("tr");
 
     for (let i = 0; list.length - 1 > i; i++) {
+
+        //https://www.w3schools.com/jsref/met_table_deleterow.asp
         children.deleteRow(1);
     }
 
