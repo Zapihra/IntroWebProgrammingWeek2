@@ -159,6 +159,8 @@ buttonAdd.addEventListener("click", function () {
     }
     if (photo != undefined) {
       row[4].innerHTML = "";
+      img.style.width = '64px';
+      img.style.height = '64px';
       row[4].appendChild(img);
     } else {
       row[4].innerHTML = "no image";
@@ -183,6 +185,8 @@ buttonAdd.addEventListener("click", function () {
     }
     if (photo != undefined) {
       tableData5.appendChild(img);
+      img.style.width = '64px';
+      img.style.height = '64px';
     } else {
       tableData5.innerHTML = "no image";
     }
