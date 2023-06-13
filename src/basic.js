@@ -6,10 +6,19 @@ buttonAdd.addEventListener("click", () => {
     const email = document.getElementById("input-email").value;
     const address = document.getElementById("input-address").value;
     const admin = document.getElementById("input-admin").checked;
+    const photo = document.getElementById("input-image").files[0];
 
     const children = document.getElementById("table");    
     const list = children.querySelectorAll("tr");
     const isFound = []; //https://www.w3schools.com/jsref/met_table_deleterow.asp
+    const img = document.createElement('img');
+
+
+    if(photo != undefined) {
+        //https://stackoverflow.com/questions/16978296/insert-image-into-table-cell-in-javascript
+        const url = URL.createObjectURL(photo);
+        img.src = url;
+    }
 
     for (let i = 0; i < list.length; i++) {
         const name = list[i].querySelector("td");
@@ -39,6 +48,16 @@ buttonAdd.addEventListener("click", () => {
         else {
             row[3].innerHTML = "-";
         }
+        
+        if (photo != undefined) {
+            row[4].innerHTML="";
+            row[4].appendChild(img);
+
+        }
+        else {
+            row[4].innerHTML="no image";
+        }
+
     }
     else {
         //https://www.w3schools.com/jsref/met_table_insertrow.asp
@@ -49,8 +68,8 @@ buttonAdd.addEventListener("click", () => {
         const tableData2 = tableRow.insertCell(1);
         const tableData3 = tableRow.insertCell(2);
         const tableData4 = tableRow.insertCell(3);
+        const tableData5 = tableRow.insertCell(4);
 
-        console.log(tableData1);
         tableData1.innerHTML = username;
         tableData2.innerHTML = email;
         tableData3.innerHTML = address;
@@ -60,6 +79,13 @@ buttonAdd.addEventListener("click", () => {
         }
         else {
             tableData4.innerHTML = "-";
+        }
+
+        if (photo != undefined) {
+            tableData5.appendChild(img);
+        }
+        else {
+            tableData5.innerHTML="no image";
         }
     }
 })
